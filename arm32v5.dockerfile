@@ -35,7 +35,7 @@ RUN make BUILD_VERSION=${BUILD_VERSION} GOARCH=${GOARCH}
 
 FROM arm32v5/debian:buster
 # Add QEMU
-COPY --from=builder qemu-aarch64-static /usr/bin
+COPY --from=builder qemu-arm-static /usr/bin
 
 LABEL maintainer="github.com/subspacecommunity/subspace"
 
