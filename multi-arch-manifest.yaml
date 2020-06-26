@@ -1,20 +1,20 @@
-image: subspacecommunity/subspace:latest
+image: agonbar/multiarch-example
 manifests:
-  - image: subspacecommunity/subspace:amd64
+  - image: agonbar/multiarch-example:amd64
     platform:
       architecture: amd64
       os: linux
-  - image: subspacecommunity/subspace:arm32v5
+  - image: agonbar/multiarch-example:arm32v5
     platform:
       architecture: arm
       os: linux
       variant: v5
-  - image: subspacecommunity/subspace:arm32v7
+  - image: agonbar/multiarch-example:arm32v7
     platform:
       architecture: arm
       os: linux
       variant: v7
-  - image: subspacecommunity/subspace:arm64v8
+  - image: agonbar/multiarch-example:arm64v8
     platform:
       architecture: arm64
       os: linux
