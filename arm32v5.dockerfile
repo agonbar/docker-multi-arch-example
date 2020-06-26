@@ -33,7 +33,7 @@ ENV GODEBUG="netdns=go http2server=0"
 RUN make BUILD_VERSION=${BUILD_VERSION} GOARCH=${GOARCH}
 
 
-FROM arm32v5/debian:buster
+FROM arm32v5/debian:buster-backports
 # Add QEMU
 COPY --from=builder qemu-arm-static /usr/bin
 
@@ -51,7 +51,6 @@ RUN apt-get update \
     && apt-get install -y \
     iproute2 \
     iptables \
-    ip6tables \
     dnsmasq \
     socat  \
     wireguard-tools \
