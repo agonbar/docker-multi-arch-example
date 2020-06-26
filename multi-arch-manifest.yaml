@@ -4,6 +4,10 @@ manifests:
     platform:
       architecture: amd64
       os: linux
+  - image: agonbar/multiarch-example:i386
+    platform:
+      architecture: 386
+      os: linux
   - image: agonbar/multiarch-example:arm32v6
     platform:
       architecture: arm
