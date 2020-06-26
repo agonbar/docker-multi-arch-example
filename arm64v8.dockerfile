@@ -5,7 +5,7 @@ ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/
 RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 
 
-FROM arm64v8/golang:1.14-alpine as build
+FROM arm64v8/golang:alpine as build
 
 # Add QEMU
 COPY --from=builder qemu-aarch64-static /usr/bin
@@ -21,10 +21,11 @@ COPY templates ./templates
 COPY email ./email
 
 ARG BUILD_VERSION=unknown
+ARG GOARCH=arm64
 
 ENV GODEBUG="netdns=go http2server=0"
 
-RUN make BUILD_VERSION=${BUILD_VERSION}
+RUN make BUILD_VERSION=${BUILD_VERSION} GOARCH=${GOARCH}
 
 FROM arm64v8/alpine:latest
 

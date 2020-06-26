@@ -9,7 +9,7 @@ subspace-linux-amd64:
 	&& go generate \
 	&& go fmt \
 	&& go vet --all
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+	CGO_ENABLED=0 GOOS=linux GOARCH=${GOARCH} \
 	go build -v --compiler gc --ldflags "-extldflags -static -s -w -X main.version=${BUILD_VERSION}" -o subspace-linux-amd64
 
 clean:
