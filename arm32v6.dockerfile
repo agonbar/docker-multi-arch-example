@@ -5,14 +5,12 @@ ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/
 RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 
 
-FROM arm32v6/golang:1.14.4-buster as build
+FROM arm32v6/golang:1.14.4-alpine as build
 
 # Add QEMU
 COPY --from=builder qemu-arm-static /usr/bin
 
-RUN apt-get update \
-    && apt-get install -y git make \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache git make
 
 WORKDIR /src
 
@@ -33,7 +31,7 @@ ENV GODEBUG="netdns=go http2server=0"
 RUN make BUILD_VERSION=${BUILD_VERSION} GOARCH=${GOARCH}
 
 
-FROM alpine:3.11.6
+FROM arm32v6/alpine:3.11.6
 # Add QEMU
 COPY --from=builder qemu-aarch64-static /usr/bin
 
