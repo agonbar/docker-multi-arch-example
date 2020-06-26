@@ -10,7 +10,7 @@ FROM arm32v6/golang:1.14.4-alpine as build
 # Add QEMU
 COPY --from=builder qemu-arm-static /usr/bin
 
-RUN apk add --no-cache git make
+RUN apk add --no-cache git make gcc musl-dev
 
 WORKDIR /src
 
