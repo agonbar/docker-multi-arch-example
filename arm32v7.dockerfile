@@ -5,8 +5,7 @@ ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/
 RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 
 
-FROM arm32v7/golang
-
+FROM arm32v7/golang:1.14.4
 # Add QEMU
 COPY --from=builder qemu-arm-static /usr/bin
 
