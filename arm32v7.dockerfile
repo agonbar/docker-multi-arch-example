@@ -32,7 +32,7 @@ ENV GODEBUG="netdns=go http2server=0"
 
 RUN make BUILD_VERSION=${BUILD_VERSION} GOARCH=${GOARCH}
 
-FROM arm32v7/alpine:latest
+FROM alpine:3.11.6
 
 # Add QEMU
 COPY --from=builder qemu-aarch64-static /usr/bin
