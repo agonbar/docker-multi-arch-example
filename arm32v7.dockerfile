@@ -10,6 +10,10 @@ FROM arm32v7/golang:alpine
 # Add QEMU
 COPY --from=builder qemu-arm-static /usr/bin
 
+RUN apt-get update \
+    && apt-get install -y git make \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /src
 
 COPY Makefile ./

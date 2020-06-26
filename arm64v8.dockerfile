@@ -10,6 +10,10 @@ FROM arm64v8/golang:alpine as build
 # Add QEMU
 COPY --from=builder qemu-aarch64-static /usr/bin
 
+RUN apt-get update \
+    && apt-get install -y git make \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /src
 
 COPY Makefile ./
